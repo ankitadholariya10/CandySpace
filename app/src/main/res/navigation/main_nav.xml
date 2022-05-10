@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/userFragment">
+
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.candyspace.myapplication.ui.fragment.UserFragment"
+        android:label="user_fragment"
+        tools:layout="@layout/user_fragment" />
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.candyspace.myapplication.ui.fragment.UserDetailFragment"
+        android:label="fragment_user_detail"
+        tools:layout="@layout/fragment_user_detail" />
+</navigation>
