@@ -55,6 +55,7 @@ class UserFragment : Fragment(), OnItemClickListener, AuthListener {
     }
 
     override fun onItemClick(view: View, user: Item) {
+        user.topTag = user.getTopTags()
         val bundle = Bundle()
         bundle.putParcelable("userdetail", user)
         Navigation.findNavController(view).navigate(R.id.userDetailFragment, bundle);

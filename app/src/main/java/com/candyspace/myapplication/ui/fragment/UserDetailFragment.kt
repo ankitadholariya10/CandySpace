@@ -41,6 +41,7 @@ class UserDetailFragment : Fragment() {
         )
         val view: View = binding.getRoot()
         binding.item = userDetail
+//        binding.texts.text = userDetail?.getTopTags()
         return view
     }
 

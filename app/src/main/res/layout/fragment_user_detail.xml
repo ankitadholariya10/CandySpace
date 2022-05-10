@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:text="}" />
+                    android:text="@{item.getReputations()}" />
             </LinearLayout>
 
             <LinearLayout
@@ -74,10 +74,11 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/texts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:text="@{item.getTopTags()}" />
+                    android:text="@{item.topTag}" />
             </LinearLayout>
 
             <LinearLayout

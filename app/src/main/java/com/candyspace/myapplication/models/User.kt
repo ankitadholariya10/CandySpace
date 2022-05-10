@@ -17,8 +17,8 @@ data class User(
 
 @Parcelize
 data class Item(
-    val badge_counts: @RawValue BadgeCounts,
-    val collectives: @RawValue List<Collective>,
+    val badge_counts: @RawValue BadgeCounts?,
+    val collectives: @RawValue List<Collectives>?,
     val creation_date: Long,
     val display_name: String,
     val is_employee: Boolean,
@@ -30,13 +30,14 @@ data class Item(
     val user_type: String,
     val website_url: String
 ) : Parcelable {
+    var topTag: String = ""
     val userName
         get() = "$user_id $display_name"
     val badge
         get() =
-            "Bonze -> " + badge_counts.bronze + "\n" +
-                    "Gold -> " + badge_counts.gold + "\n" +
-                    "Silver ->" + badge_counts.silver + "\n"
+            "Bonze -> " + badge_counts?.bronze + "\n" +
+                    "Gold -> " + badge_counts?.gold + "\n" +
+                    "Silver ->" + badge_counts?.silver + "\n"
     val createdAt
         get() = getDate(creation_date)
 
@@ -46,13 +47,38 @@ data class Item(
     }
 
     fun getTopTags(): String {
+        Log.e("Collectivs", collectives.toString())
         var tags = ""
         if (!collectives.isNullOrEmpty()) {
+
             collectives.forEach {
-                tags = tags + "," + "\n" + it.collective.name
+                if (tags.isNullOrEmpty())
+                    tags = it.collective!!.name + "/n"
+                else
+                    tags = tags + "," + "\n" + it.collective!!.name
             }
+        }else {
+            tags= "No Tags Found"
         }
         return tags
     }
+
+    @Parcelize
+    data class Collectives(
+        val collective: Collective?,
+        val role: String
+    ) : Parcelable
+
+    @Parcelize
+    data class Collective(
+        val tags: List<String>?,
+        val name: String
+    ) : Parcelable
+
+    data class BadgeCounts(
+        val bronze: Int,
+        val gold: Int,
+        val silver: Int
+    )
 
 }
